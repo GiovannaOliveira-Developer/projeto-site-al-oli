@@ -9,6 +9,14 @@
   align-items: center;
   padding: 28px 48px;
   background: linear-gradient(rgba(0, 0, 0, 0.55), transparent);
+  transition: padding 0.3s, background-color 0.3s, box-shadow 0.3s;
+}
+
+.header--rolou {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  background-color: rgba(17, 17, 17, 0.92);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
 }
 
 .header__logo {
@@ -18,6 +26,15 @@
   white-space: nowrap;
   color: #fff;
   text-decoration: none;
+  transition: transform 0.3s, font-size 0.3s;
+}
+
+.header__logo:hover {
+  transform: rotate(-4deg) scale(1.05);
+}
+
+.header--rolou .header__logo {
+  font-size: 28px;
 }
 
 .header__menu {
@@ -27,6 +44,7 @@
 }
 
 .header__menu a {
+  position: relative;
   padding: 4px 0;
   font-size: 13px;
   font-weight: 600;
@@ -34,6 +52,24 @@
   text-transform: uppercase;
   color: #fff;
   text-decoration: none;
+}
+
+.header__menu a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s;
+}
+
+.header__menu a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .header__botao-menu {

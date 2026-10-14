@@ -10,12 +10,24 @@ const links = [
 
 function Header() {
   const [menuAberto, setMenuAberto] = useState(false)
+  const [rolou, setRolou] = useState(false)
+
+  useEffect(() => {
+    function aoRolar() {
+      setRolou(window.scrollY > 60)
+    }
+
+    aoRolar()
+    window.addEventListener('scroll', aoRolar)
+    return () => window.removeEventListener('scroll', aoRolar)
+  }, [])
 
   useEffect(() => {
     document.body.style.overflow = menuAberto ? 'hidden' : ''
   }, [menuAberto])
 
   const classes = ['header']
+  if (rolou) classes.push('header--rolou')
   if (menuAberto) classes.push('header--menu-aberto')
 
   return (
