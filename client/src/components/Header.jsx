@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import './Header.css'
 
 const links = [
@@ -8,19 +9,46 @@ const links = [
 ]
 
 function Header() {
+  const [menuAberto, setMenuAberto] = useState(false)
+
+  useEffect(() => {
+    document.body.style.overflow = menuAberto ? 'hidden' : ''
+  }, [menuAberto])
+
+  const classes = ['header']
+  if (menuAberto) classes.push('header--menu-aberto')
+
   return (
-    <header className="header">
-      <a href="#inicio" className="header__logo">
+    <header className={classes.join(' ')}>
+      <a href="#inicio" className="header__logo" onClick={() => setMenuAberto(false)}>
         Al Oli
       </a>
 
-      <nav className="header__menu">
-        {links.map((link) => (
-          <a key={link.href} href={link.href}>
+      <nav id="menu-principal" className="header__menu">
+        {links.map((link, indice) => (
+          <a
+            key={link.href}
+            href={link.href}
+            style={{ '--ordem': indice }}
+            onClick={() => setMenuAberto(false)}
+          >
             {link.texto}
           </a>
         ))}
       </nav>
+
+      <button
+        type="button"
+        className="header__botao-menu"
+        aria-label={menuAberto ? 'Fechar menu' : 'Abrir menu'}
+        aria-expanded={menuAberto}
+        aria-controls="menu-principal"
+        onClick={() => setMenuAberto(!menuAberto)}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </header>
   )
 }
