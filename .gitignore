@@ -1,11 +1,42 @@
+# Variáveis de ambiente e segredos
 .env
+.env.*
+!.env.example
+*.pem
+*.key
 
 # Python
 venv/
 .venv/
 __pycache__/
 *.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+*.egg-info/
+.ipynb_checkpoints/
+build/
 
 # Banco de dados local (SQLite)
 *.db
 *.sqlite3
+
+# Node / front
+node_modules/
+dist/
+.vite/
+.cache/
+.eslintcache
+coverage/
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema e editor
+.DS_Store
+Thumbs.db
+.idea/
